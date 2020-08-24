@@ -5,9 +5,9 @@ dev.local {
         tls /etc/etcd/etcd-healthcheck-client.pem /etc/etcd/etcd-healthcheck-client-key.pem /etc/etcd/etcd-ca.pem
     }
     prometheus
-	cache
-	loadbalance
-	log    
+    cache
+    loadbalance
+    log    
 }
 
 
