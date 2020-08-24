@@ -1,0 +1,33 @@
+dev.local {
+    etcd {
+        path /skydns
+        endpoint https://192.168.33.11:2379 https://192.168.33.12:2379 https://193.168.33.11:2379
+        tls /etc/etcd/etcd-healthcheck-client.pem /etc/etcd/etcd-healthcheck-client-key.pem /etc/etcd/etcd-ca.pem
+    }
+    prometheus
+	cache
+	loadbalance
+	log    
+}
+
+
+.:53 {
+    errors
+    health {
+        lameduck 5s
+    }
+    ready
+    prometheus :9153
+    forward . 10.0.2.3 /etc/resolv.conf {
+        policy sequential
+        max_concurrent 1000
+    }
+    hosts /etc/add_hosts {
+        fallthrough
+    }
+    cache 30
+    loop
+    reload
+    loadbalance
+    log
+}
