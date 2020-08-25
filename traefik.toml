@@ -1,0 +1,33 @@
+[global]
+  checkNewVersion = false
+  sendAnonymousUsage = false
+
+[log]
+  level = "DEBUG"
+  format = "common"
+
+[api]
+  dashboard = true
+  insecure = true
+  debug = true
+
+[ping]
+
+[accessLog]
+
+[entryPoints]
+  [entryPoints.http]
+    address = ":80"
+  #[entryPoints.https]
+    #address = ":443"
+[providers]
+  [providers.consulCatalog]
+    exposedByDefault = false
+    prefix = "traefik"
+    [providers.consulCatalog.endpoint]
+      address = "127.0.0.1:8500"
+      endpointWaitTime = "15s"
+  [providers.file]
+    watch = true
+    directory = "/etc/traefik/file"
+    debugLogGeneratedTemplate = true  
