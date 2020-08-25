@@ -1,0 +1,16 @@
+[Unit]
+Description=consul
+Documentation=https://github.com/hashicorp/consul
+After=network.target
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/consul agent -config-dir /etc/consul.d/ -bind=_BINDIP_ -node="_NODENAME_"
+Restart=on-failure
+RestartSec=10s
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

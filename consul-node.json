@@ -1,0 +1,27 @@
+{
+    "server": false,
+    "client_addr": "0.0.0.0",
+    "datacenter": "dc1",
+    "data_dir": "/data/consul",
+    "dns_config": {
+      "enable_truncate": true,
+      "only_passing": true
+    },
+    "encrypt": "_encrypt_",
+    "leave_on_terminate": true,
+    "rejoin_after_leave": true,
+    "ui": true,
+    "enable_debug": false,
+    "retry_join": [
+      "192.168.33.14",
+      "192.168.33.15",
+      "192.168.33.16"
+    ],
+    "retry_interval": "30s",
+    "start_join": [
+      "192.168.33.14",
+      "192.168.33.15",
+      "192.168.33.16"
+    ],
+    "disable_update_check": true
+  }
