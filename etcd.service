@@ -9,25 +9,7 @@ Wants=network-online.target
 
 [Service]
 Type=notify
-ExecStart=/bin/bash -c "/usr/local/bin/etcd \
---name=etcd-11 \
---data-dir=/opt/etcd-data \
---advertise-client-urls=https://192.168.33.11:2379 \
---listen-peer-urls=https://192.168.33.11:2380 \
---listen-client-urls=https://192.168.33.11:2379 \
---initial-advertise-peer-urls=https://192.168.33.11:2380 \
---initial-cluster=etcd-11=https://192.168.33.11:2380,etcd-12=https://192.168.33.12:2380,etcd-13=https://192.168.33.13:2380 \
---initial-cluster-state=new \
---cert-file=/etc/etcd/etcd-server.pem \
---key-file=/etc/etcd/etcd-server-key.pem \
---trusted-ca-file=/etc/etcd/etcd-ca.pem \
---client-cert-auth \
---peer-cert-file=/etc/etcd/etcd-peer.pem \
---peer-key-file=/etc/etcd/etcd-peer-key.pem \
---peer-trusted-ca-file=/etc/etcd/etcd-ca.pem \
---peer-client-cert-auth \
---enable-v2=true"
-
+ExecStart=/usr/local/bin/etcd --config-file /etc/etcd/etcd.conf.yml
 Restart=on-failure
 RestartSec=10s
 LimitNOFILE=65536
