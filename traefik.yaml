@@ -1,0 +1,29 @@
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+log:
+  level: DEBUG
+  format: common
+api:
+  dashboard: true
+  insecure: true
+  debug: true
+ping: {}
+accessLog: {}
+entryPoints:
+  http:
+    address: ':80'
+providers:
+  consulCatalog:
+    refreshInterval: 10s
+    exposedByDefault: false
+    requireConsistent: false
+    stale: true
+    prefix: traefik
+    endpoint:
+      address: '127.0.0.1:8500'
+      endpointWaitTime: 15s
+  file:
+    watch: true
+    directory: /etc/traefik/file
+    debugLogGeneratedTemplate: true
